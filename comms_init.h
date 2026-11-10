@@ -1,1 +1,0 @@
-void comms_init();
