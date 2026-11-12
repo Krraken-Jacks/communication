@@ -1,3 +1,6 @@
+#ifndef MESSAGE_FORMAT_H
+#define MESSAGE_FORMAT_H
+
 #include <stdint.h>
 
 
@@ -16,6 +19,9 @@ struct laser_message {
 
 typedef struct laser_message LaserMessage;
 
+_Static_assert(sizeof(LaserMessage) == 11, "Ayo! Shi' ain't packed...");
+
+
 
 
 
@@ -33,3 +39,9 @@ struct motor_message {
 #pragma pack(pop)
 
 typedef struct motor_message MotorMessage;
+
+_Static_assert(sizeof(LaserMessage) == 11, "Ayo! Shi' ain't packed...");
+
+
+
+#endif // MESSAGE_FORMAT_H
