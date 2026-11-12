@@ -41,7 +41,7 @@ struct motor_message {
 #pragma pack(pop)
 
 typedef struct motor_message MotorMessage;
-_Static_assert(sizeof(LaserMessage) == 11, "Ayo! Shi' ain't packed...");
+_Static_assert(sizeof(MotorMessage) == 11, "Ayo! Shi' ain't packed...");
 
 extern const MotorMessage MOTOR_MESSAGE_DEFAULT;
 
