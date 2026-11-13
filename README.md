@@ -3,6 +3,7 @@ we made you a "library" you can copy over into your applications folder and then
 (Made for Laser, Motor and Encoding submodules...)
 
 ### Usage:
+(if you get a Clock skew error, look at the bottom)
 
 #### 1. Instalation:
 1. copy the comms folder into your application folder (libPYNQ.../applications/SocialSubmodule/) via scp;
@@ -95,4 +96,14 @@ int main(void) {
 Compile via
 ```
 make -f Makefile.lib
+```
+
+#### 4. Clock skew error
+Make edit date of files to be "now"
+```
+find . -type f -exec touch {} +
+```
+Then build:
+```
+make clean && make
 ```
