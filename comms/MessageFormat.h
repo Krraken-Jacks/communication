@@ -1,6 +1,8 @@
 #ifndef MESSAGE_FORMAT_H
 #define MESSAGE_FORMAT_H
 
+#define START_BYTE 0x80 // (0b10000000)
+
 #include <stdint.h>
 
 
