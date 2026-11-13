@@ -80,7 +80,7 @@ int main(void) {
 
 
     // ...
-    // Do stuff 🧪
+    // Do whatever
     // ...
   }
 
