@@ -15,6 +15,7 @@ main.c
 #include <libpynq.h>
 
 #include "comms_init.h" // You always need to include this; Adds: void comms_init();
+//By default: AR0 - RX, AR1 - TX!!!
 
 // From these guys include only what you need
 #include "receiveLaser.h" // Adds: uint8_t check_laser_msg(char payload[8], uint8_t buffer[], uint8_t *buff_size);
