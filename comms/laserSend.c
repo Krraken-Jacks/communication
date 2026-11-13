@@ -2,6 +2,8 @@
 #include <stdint.h>
 #include "laserSend.h"
 #include "crc8.h"
+#include "MessageFormat.h"
+
 
 //send message
 void send_message_laser(char _payload[8]) {
