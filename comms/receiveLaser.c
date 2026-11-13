@@ -89,7 +89,7 @@ uint8_t check_for_msg(LaserMessage *defaultM, uint8_t buffer[BUFF_CAP], uint8_t 
     }
 
 
-    if ((*buff_size) < sizeof(Message)) {
+    if ((*buff_size) < sizeof(LaserMessage)) {
       // not much to interpret... Let's skip...
       continue;
     }
@@ -98,7 +98,7 @@ uint8_t check_for_msg(LaserMessage *defaultM, uint8_t buffer[BUFF_CAP], uint8_t 
     if (interpret_msg(output, buffer, 0) == 1) {
       // got a sensible message
       // lets clear up the buffer till the end of the good message
-      uint8_t keep_from = sizeof(Message);
+      uint8_t keep_from = sizeof(LaserMessage);
 
       clear_buffer(buffer, buff_size, keep_from);
 
