@@ -49,7 +49,7 @@ int main(void) {
     // 3.2 Receive
     char payloadForReceiving[8]; // NOTICE: NO \0 at the end; this is just an array of chars, not a c string
 
-    if (check_laser_msg(payload, buffer, &buff_size) == 1) {
+    if (check_laser_msg(payloadForReceiving, buffer, &buff_size) == 1) {
       // Received a payload; you can use it somewhere.
       // Let's print it for example.
 
@@ -57,6 +57,7 @@ int main(void) {
       for (int i = 0; i < 8; i++) {
         printf("%c", payloadForReceiving[i]);
       }
+      printf("\n");
     }
 
 
@@ -77,7 +78,7 @@ int main(void) {
       // Received a payload; you can use it somewhere.
       // Let's print it for example.
 
-      printf("x: %.2f, y: %.2f", xr, yr);
+      printf("x: %.2f, y: %.2f\n", xr, yr);
     }
 
 
