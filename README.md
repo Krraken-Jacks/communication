@@ -94,5 +94,5 @@ int main(void) {
 #### 3. Compilation
 Compile via
 ```
-?
+make -f Makefile.lib
 ```
