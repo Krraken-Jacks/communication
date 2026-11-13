@@ -1,6 +1,7 @@
 #include <libpynq.h>
 #include "MessageFormat.h"
 #include "crc8.h"
+#include "receiveLaser.h"
 
 #define BUFF_CAP 50
 
