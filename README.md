@@ -17,7 +17,7 @@ main.c
 #include "comms_init.h" // You always need to include this; Adds: void comms_init();
 
 // From these guys include only what you need
-#include "receiveLaser.h" // Adds: uint8_t check_laser_msg(char payload[9], uint8_t buffer[], uint8_t *buff_size);
+#include "receiveLaser.h" // Adds: uint8_t check_laser_msg(char payload[8], uint8_t buffer[], uint8_t *buff_size);
 #include "receiveMotor.h" // Adds: uint8_t check_motor_msg(float *x, float *y, uint8_t buffer[], uint8_t *buff_size);
 #include "laserSend.h" // Adds: void send_message_laser(char _payload[8]);
 #include "motorSend.h" // Adds: void send_message_motor(float _x, float _y);
