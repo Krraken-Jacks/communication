@@ -5,7 +5,7 @@
 
 #define BUFF_CAP 50
 
-void clear_buffer(uint8_t buffer[BUFF_CAP], uint8_t *buff_size, uint8_t keep_from_index) {
+static void clear_buffer(uint8_t buffer[BUFF_CAP], uint8_t *buff_size, uint8_t keep_from_index) {
   if (keep_from_index >= (*buff_size)) {
     // outabounds!
     (*buff_size) = 0;
@@ -22,7 +22,7 @@ void clear_buffer(uint8_t buffer[BUFF_CAP], uint8_t *buff_size, uint8_t keep_fro
 }
 
 // returns: 0 - nothing meaningful; 1 - meaningful message!
-uint8_t interpret_msg(MotorMessage *defaultM, uint8_t buffer[BUFF_CAP], /* uint8_t *buff_size, */ uint8_t start) {
+static uint8_t interpret_msg(MotorMessage *defaultM, uint8_t buffer[BUFF_CAP], /* uint8_t *buff_size, */ uint8_t start) {
   uint8_t i = start;
 
   // is the first byte ok?
@@ -83,7 +83,7 @@ uint8_t interpret_msg(MotorMessage *defaultM, uint8_t buffer[BUFF_CAP], /* uint8
 // Returns 0 when no new message was received (or we have it only partially); returns 1 when you have new data.
 // Robust: non-blocking when no uart data and keeps the buffer
 // NOTE: FUCKS UP YOUR Message output (it is garbage unless 1 is returned)
-uint8_t check_for_msg(MotorMessage *defaultM, uint8_t buffer[BUFF_CAP], uint8_t *buff_size) {
+static uint8_t check_for_msg(MotorMessage *defaultM, uint8_t buffer[BUFF_CAP], uint8_t *buff_size) {
   while (uart_has_data(UART0)) {
     if ((*buff_size) >= BUFF_CAP) { // safety net, discard oldest byte
       clear_buffer(buffer, buff_size, 1);
