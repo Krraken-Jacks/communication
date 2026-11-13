@@ -60,7 +60,7 @@ uint8_t interpret_msg(MotorMessage *defaultM, uint8_t buffer[BUFF_CAP], /* uint8
 
   i += j; // this will be the index of the last byte - check sum
 
-  defaultM->check_sum = buffer[i];
+  defaultM->checksum = buffer[i];
   // printf("PAYLOAD COLLECTED!\n");
 
 
@@ -112,7 +112,7 @@ uint8_t check_for_msg(MotorMessage *defaultM, uint8_t buffer[BUFF_CAP], uint8_t 
     }
 
 
-    if (interpret_msg(output, buffer, 0) == 1) {
+    if (interpret_msg(defaultM, buffer, 0) == 1) {
       // got a sensible message
       // lets clear up the buffer till the end of the good message
       uint8_t keep_from = sizeof(MotorMessage);
@@ -134,7 +134,7 @@ uint8_t check_for_msg(MotorMessage *defaultM, uint8_t buffer[BUFF_CAP], uint8_t 
 
 
 // ONLY THIS FUNCTION GETS EXPOSED TO THE USER; if the function returns 1, x and y will contain the received coordinates as floats
-uint8_t check_motor_msg(float *x, float *y, uint8_t buffer[BUFF_CAP], uint8_t *buff_size) {
+uint8_t check_motor_msg(float *x, float *y, uint8_t buffer[], uint8_t *buff_size) {
   static MotorMessage msg = {
     .start_byte = START_BYTE,
     .id = MOTOR_MODULE_ID
