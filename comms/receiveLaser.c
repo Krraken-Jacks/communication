@@ -51,7 +51,7 @@ uint8_t interpret_msg(LaserMessage *defaultM, uint8_t buffer[BUFF_CAP], /* uint8
 
   i += j; // this will be the index of the last byte - check sum
 
-  defaultM->check_sum = buffer[i];
+  defaultM->checksum = buffer[i];
 
 
   // OK, lets check the message integrity... (we skip START_BYTE!)
@@ -95,7 +95,7 @@ uint8_t check_for_msg(LaserMessage *defaultM, uint8_t buffer[BUFF_CAP], uint8_t 
     }
 
 
-    if (interpret_msg(output, buffer, 0) == 1) {
+    if (interpret_msg(defaultM, buffer, 0) == 1) {
       // got a sensible message
       // lets clear up the buffer till the end of the good message
       uint8_t keep_from = sizeof(LaserMessage);
@@ -119,7 +119,7 @@ uint8_t check_for_msg(LaserMessage *defaultM, uint8_t buffer[BUFF_CAP], uint8_t 
 
 
 // ONLY THIS FUNCTION GETS EXPOSED TO THE USER; if the function returns 1, payload will contain the received payload (as a c string, thus it is 9 chars with an \0 at the end!)
-uint8_t check_laser_msg(char payload[8], uint8_t buffer[BUFF_CAP], uint8_t *buff_size) {
+uint8_t check_laser_msg(char payload[8], uint8_t buffer[], uint8_t *buff_size) {
   static LaserMessage msg = {
     .start_byte = START_BYTE,
     .id = LASER_MODULE_ID
