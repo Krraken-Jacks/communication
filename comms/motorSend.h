@@ -1,3 +1,3 @@
 #include "MessageFormat.h"
 
-void send_message_motor(MotorMessage* msg);
+void send_message_motor(float _x, float _y);
