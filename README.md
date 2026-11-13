@@ -6,8 +6,9 @@ we made you a "library" you can copy over into your applications folder and then
 (if you get a Clock skew error, look at the bottom)
 
 #### 1. Instalation:
-1. copy the comms folder into your application folder (libPYNQ.../applications/SocialSubmodule/) via scp;
-2. copy also the Makefile from the repository to the same application folder. (This is important for compiling.)
+1. copy the comms.zip into your application folder (libPYNQ.../applications/SocialSubmodule/);
+2. run ```unzip comms.zip``` in the folder;
+3. choose y (yes) when asked whether to replace the Makefile.
 
 #### 2. Example usage:
 
@@ -31,9 +32,9 @@ int main(void) {
   // 1. Before beginning communications do this!
   comms_init();
 
-  // 2. If you will be receiving, create a buffer; using default settings replace BUFF_CAP with 50
-  uint8_t buffer[BUFF_CAP];
-  uint8_t size = 0;
+  // 2. If you will be receiving, create a buffer
+  uint8_t buffer[50];
+  uint8_t buff_size = 0;
 
 
   while (1) {
@@ -48,7 +49,7 @@ int main(void) {
     // 3.2 Receive
     char payloadForReceiving[8]; // NOTICE: NO \0 at the end; this is just an array of chars, not a c string
 
-    if (check_laser_msg(payload, buffer, buff_size) == 1) {
+    if (check_laser_msg(payload, buffer, &buff_size) == 1) {
       // Received a payload; you can use it somewhere.
       // Let's print it for example.
 
@@ -72,7 +73,7 @@ int main(void) {
     // 4.2 Receive
     float xr, yr;
     
-    if (check_motor_msg(&xr, &yr, buffer, buff_size) == 1) {
+    if (check_motor_msg(&xr, &yr, buffer, &buff_size) == 1) {
       // Received a payload; you can use it somewhere.
       // Let's print it for example.
 
@@ -81,7 +82,7 @@ int main(void) {
 
 
     // ...
-    // Do whatever 🧪🧪
+    // Do whatever
     // ...
   }
 
@@ -93,17 +94,17 @@ int main(void) {
 
 
 #### 3. Compilation
-Compile via
+Compile via in the folder which contains the main.c
 ```
-make -f Makefile.lib
+make
 ```
 
 #### 4. Clock skew error
-Make edit date of files to be "now"
+Edit date of files to be "now"
 ```
 find . -type f -exec touch {} +
 ```
-Then build:
+Then clean build:
 ```
 make clean && make
 ```
