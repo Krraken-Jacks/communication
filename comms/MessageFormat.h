@@ -2,9 +2,10 @@
 #define MESSAGE_FORMAT_H
 
 #define START_BYTE 0x80 // (0b10000000)
+#define LASER_MODULE_ID 'L'
+#define MOTOR_MODULE_ID 'M'
 
 #include <stdint.h>
-
 
 
 #pragma pack(push, 1)
