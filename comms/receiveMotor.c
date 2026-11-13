@@ -135,7 +135,10 @@ uint8_t check_for_msg(MotorMessage *defaultM, uint8_t buffer[BUFF_CAP], uint8_t 
 
 // ONLY THIS FUNCTION GETS EXPOSED TO THE USER; if the function returns 1, x and y will contain the received coordinates as floats
 uint8_t check_motor_msg(float *x, float *y, uint8_t buffer[BUFF_CAP], uint8_t *buff_size) {
-  MotorMessage msg = MOTOR_MESSAUGE_DEFAULT;
+  static MotorMessage msg = {
+    .start_byte = START_BYTE,
+    .id = MOTOR_MODULE_ID
+  };
 
   uint8_t r = check_for_msg(&msg, buffer, buff_size);
 
