@@ -119,7 +119,7 @@ uint8_t check_for_msg(LaserMessage *defaultM, uint8_t buffer[BUFF_CAP], uint8_t 
 
 
 // ONLY THIS FUNCTION GETS EXPOSED TO THE USER; if the function returns 1, payload will contain the received payload (as a c string, thus it is 9 chars with an \0 at the end!)
-uint8_t check_laser_msg(char *payload, uint8_t buffer[BUFF_CAP], uint8_t *buff_size) {
+uint8_t check_laser_msg(char payload[9], uint8_t buffer[BUFF_CAP], uint8_t *buff_size) {
   static LaserMessage msg = {
     .start_byte = START_BYTE,
     .id = LASER_MODULE_ID
